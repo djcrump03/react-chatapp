@@ -7,6 +7,9 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const config = require("./config/key");
 
+
+const { Chat } = require("./models/Chat");
+
 const mongoose = require("mongoose");
 const connect = mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB Connected...'))
@@ -16,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-const { Chat } = require("./models/Chat");
+
 
 app.use('/api/users', require('./routes/users'));
 

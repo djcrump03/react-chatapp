@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -6,12 +7,13 @@ const chatSchema = mongoose.Schema({
         type:String,
     },
     sender: {
-        type: Schema.Types.ObjectId,
-       ref: 'User'
+        type: Schema.Types.ObjectID,
+        ref: 'User'
     },
-    type : {
+    type: {
         type: String
     },
+
 }, {timestamps: true});
 
 const Chat = mongoose.model('Chat', chatSchema);
