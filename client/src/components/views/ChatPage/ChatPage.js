@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Row, Col, } from 'antd';
 import io from "socket.io-client";
 import { connect } from "react-redux";
-import  moment  from "moment";
+import moment from "moment";
 
 export class ChatPage extends Component {
-    state= {
+    state = {
         chatMessage: "",
     }
 
     componentDidMount() {
-        let server = "http://localhost:5000";
+        let server = "http://:5000";
 
         this.socket = io(server);
 
@@ -19,7 +19,7 @@ export class ChatPage extends Component {
         })
     }
 
-    hanleSearchChange =(e) => {
+    hanleSearchChange = (e) => {
         this.setState({
             chatMessage: e.target.value
         })
@@ -72,18 +72,18 @@ export class ChatPage extends Component {
                                 <Input
                                     id="message"
                                     prefix={<Icon type="message" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                    placeholder="Let's start talking"
+                                    placeholder="Hey let's start Chatting.."
                                     type="text"
                                     value={this.state.chatMessage}
                                     onChange={this.hanleSearchChange}
                                 />
                             </Col>
                             <Col span={2}>
-                                
+
                             </Col>
 
                             <Col span={4}>
-                                <Button type="primary" style={{ width: '100%' }} onClick={this.submitChatMessage}  htmlType="submit">
+                                <Button type="primary" style={{ width: '100%' }} onClick={this.submitChatMessage} htmlType="submit">
                                     <Icon type="enter" />
                                 </Button>
                             </Col>

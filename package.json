@@ -31,5 +31,13 @@
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.19.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djcrump03/react-chatapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/djcrump03/react-chatapp/issues"
+  },
+  "homepage": "https://github.com/djcrump03/react-chatapp#readme"
 }

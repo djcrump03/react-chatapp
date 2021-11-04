@@ -5,9 +5,9 @@ import Auth from "../hoc/auth";
 import LandingPage from "./views/LandingPage/LandingPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
-import ChatPage from "./views/ChatPage/ChatPage"
+import ChatPage from "./views/ChatPage/ChatPage";
 import NavBar from "./views/NavBar/NavBar";
-import Footer from "./views/Footer/Footer"
+import Footer from "./views/Footer/Footer";
 
 function App() {
   return (
