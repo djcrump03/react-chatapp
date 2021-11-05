@@ -3,6 +3,8 @@ import { Form, Icon, Input, Button, Row, Col, } from 'antd';
 import io from "socket.io-client";
 import { connect } from "react-redux";
 import moment from "moment";
+import {getChats, afterPostMessage} from "../../../_actions/chat_actions"
+import  ChatCard from "./Sections/ChatCard";
 
 export class ChatPage extends Component {
     state = {
@@ -11,18 +13,28 @@ export class ChatPage extends Component {
 
     componentDidMount() {
         let server = "http://:5000";
+        
+        this.props.dispatch(getChats());
 
         this.socket = io(server);
 
         this.socket.on("Output Chat Message", messageFromBackEnd => {
             console.log(messageFromBackEnd)
+            this.props.dispatch(afterPostMessage( messageFromBackEnd));
         })
     }
 
-    hanleSearchChange = (e) => {
+    handleSearchChange = (e) => {
         this.setState({
             chatMessage: e.target.value
         })
+    }
+
+    renderCards = () => {
+        this.props.chats. chats &&
+            this.props.chats.chats.map((chat,i) => (
+                <ChatPage/>
+            ));
     }
 
     submitChatMessage = (e) => {
@@ -33,7 +45,7 @@ export class ChatPage extends Component {
         let userName = this.props.user.userData.name;
         let userImage = this.props.user.userData.image;
         let nowTime = moment();
-        let type = "Image"
+        let type = "Text"
 
         this.socket.emit("Input Chat Message", {
             chatMessage,
@@ -55,9 +67,9 @@ export class ChatPage extends Component {
 
                 <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                     <div className="infinite-container">
-                        {/* {this.props.chats && (
+                        {this.props.chats && (
                             <div>{this.renderCards()}</div>
-                        )} */}
+                        )}
                         <div
                             ref={el => {
                                 this.messagesEnd = el;
@@ -75,7 +87,7 @@ export class ChatPage extends Component {
                                     placeholder="Hey let's start Chatting.."
                                     type="text"
                                     value={this.state.chatMessage}
-                                    onChange={this.hanleSearchChange}
+                                    onChange={this.handleSearchChange}
                                 />
                             </Col>
                             <Col span={2}>
@@ -97,7 +109,8 @@ export class ChatPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        chats: state.chat
     }
 }
 
